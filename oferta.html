@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>VIGORATI – Tu Plan Está Listo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* ── OFFER PAGE STYLES ── */
+    body { background: #0d0d14; color: #fff; font-family: 'Inter', sans-serif; }
+
+    /* HEADER */
+    .offer-header {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: #0d0d14; z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .offer-header-inner {
+      max-width: 480px; margin: 0 auto;
+      display: flex; flex-direction: row;
+      align-items: center; justify-content: space-between;
+      padding: 10px 16px; gap: 12px;
+    }
+    .oh-left { display: flex; flex-direction: column; }
+    .oh-label { font-size: 11px; color: #7f8c8d; line-height: 1.2; }
+    .oh-timer {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900; font-size: 22px;
+      color: #e74c3c; letter-spacing: 2px; line-height: 1.1;
+    }
+    .oh-cta-btn {
+      background: #e74c3c; color: #fff; border: none;
+      border-radius: 10px; padding: 10px 18px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 13px;
+      letter-spacing: 0.5px; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      white-space: nowrap; transition: background 0.2s;
+    }
+    .oh-cta-btn:hover { background: #c0392b; }
+
+    /* BODY */
+    .offer-body { padding: 90px 20px 60px; }
+    .offer-page { max-width: 480px; margin: 0 auto; text-align: center; }
+
+    /* BEFORE / AFTER */
+    .ba-section { margin-bottom: 20px; }
+    .ba-row { display: flex; gap: 12px; }
+    .ba-col { flex: 1; }
+    .ba-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 18px;
+      color: #b0b0c0; text-align: center; margin-bottom: 8px;
+    }
+    .ba-label.accent { color: #e74c3c; }
+    .ba-card {
+      background: #1e1e2e; border-radius: 14px;
+      aspect-ratio: 1/1; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      padding: 12px; margin-bottom: 12px;
+    }
+    .ba-card.red-bg { background: linear-gradient(135deg, #c0392b 0%, #e8584a 100%); }
+    .ba-img { width: 100%; height: 100%; object-fit: contain; }
+    .ba-stat { margin-bottom: 10px; text-align: center; }
+    .ba-stat-label {
+      display: block; font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 13px; color: #fff; margin-bottom: 3px;
+    }
+    .ba-stat-val { display: block; font-size: 12px; margin-bottom: 6px; }
+    .ba-stat-val.dim { color: #7f8c8d; }
+    .ba-stat-val.bright { color: #e74c3c; }
+    .ba-bar { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+    .ba-bar-fill { height: 100%; background: #e74c3c; border-radius: 2px; }
+
+    /* SOCIAL PROOF CARD */
+    .sp-card {
+      background: #1e1e2e; border-radius: 14px;
+      padding: 16px; display: flex; gap: 12px;
+      align-items: flex-start; margin-bottom: 24px;
+      text-align: left;
+    }
+    .sp-card-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: rgba(231,76,60,0.15); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 20px;
+    }
+    .sp-card-text { font-size: 14px; color: #b0b0c0; line-height: 1.6; }
+    .sp-card-text strong { color: #fff; }
+
+    /* PLAN HEADLINE */
+    .plan-headline {
+      font-family: 'Montserrat', sans-serif; font-weight: 900;
+      font-size: clamp(20px, 6vw, 26px); color: #fff;
+      line-height: 1.25; margin-bottom: 20px;
+    }
+
+    /* STATS CHIPS */
+    .stats-chips { display: flex; gap: 10px; margin-bottom: 20px; }
+    .stat-chip {
+      flex: 1; background: #1e1e2e; border-radius: 12px;
+      padding: 12px 10px; display: flex; align-items: center; gap: 8px;
+      text-align: left;
+    }
+    .stat-chip-icon { font-size: 18px; flex-shrink: 0; }
+    .stat-chip-label { font-size: 11px; color: #7f8c8d; display: block; }
+    .stat-chip-val { font-size: 13px; font-weight: 700; color: #fff; display: block; }
+
+    /* CHART */
+    .offer-chart { width: 100%; border-radius: 14px; display: block; margin-bottom: 24px; }
+
+    /* PLAN BULLETS */
+    .plan-bullets { list-style: none; margin-bottom: 32px; display: flex; flex-direction: column; gap: 14px; text-align: left; }
+    .plan-bullets li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #b0b0c0; line-height: 1.55; }
+    .pb-icon {
+      width: 24px; height: 24px; flex-shrink: 0; margin-top: 1px;
+      border-radius: 50%; border: 1.5px solid #e74c3c; color: #e74c3c;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 700;
+    }
+
+    /* PRODUCT CARD (single purchase) */
+    .product-card {
+      background: #1e1e2e; border: 2px solid #e74c3c;
+      border-radius: 16px; padding: 20px 18px;
+      margin-bottom: 16px; position: relative;
+    }
+    .product-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: #e74c3c; color: #fff; font-size: 11px; font-weight: 700;
+      padding: 4px 14px; border-radius: 20px; white-space: nowrap;
+    }
+    .product-name {
+      font-family: 'Montserrat', sans-serif; font-weight: 900;
+      font-size: 18px; color: #fff; margin-bottom: 12px;
+    }
+    .product-price-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; flex-wrap: wrap; margin-bottom: 8px;
+    }
+    .product-price-old {
+      font-size: 15px; color: #7f8c8d; text-decoration: line-through;
+    }
+    .product-price {
+      font-family: 'Montserrat', sans-serif; font-weight: 900;
+      font-size: 28px; color: #e74c3c;
+    }
+    .product-price-type {
+      background: rgba(231,76,60,0.15); color: #e74c3c;
+      font-size: 11px; font-weight: 700; border-radius: 20px;
+      padding: 3px 10px; border: 1px solid rgba(231,76,60,0.4);
+    }
+    .local-price {
+      font-size: 13px; color: #b0b0c0; margin-top: 4px;
+      display: none;
+    }
+
+    /* PLAN SELECTOR */
+    .elige-titulo {
+      font-family: 'Montserrat', sans-serif; font-weight: 900;
+      font-size: 22px; color: #fff; text-align: center;
+      margin: 32px 0 20px;
+    }
+    .plan-selector {
+      display: flex; flex-direction: column; gap: 16px; margin-bottom: 16px;
+    }
+    .plan-option {
+      background: #1e1e2e; border: 2px solid rgba(255,255,255,0.14);
+      border-radius: 16px; padding: 22px 18px 18px; position: relative;
+    }
+    .plan-option.popular {
+      background: #1e1e2e; border-color: #e74c3c;
+      box-shadow: 0 0 28px rgba(231,76,60,0.25);
+    }
+    .plan-basic-note {
+      font-size: 12px; color: #e74c3c; text-align: center;
+      margin: -8px 0 14px; font-weight: 600;
+    }
+    .cta-basic-btn {
+      display: block; width: 100%; background: #7b1e1e;
+      color: #f0c0c0; border: none; border-radius: 14px;
+      padding: 15px; text-align: center;
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px;
+      letter-spacing: 0.3px; cursor: pointer; text-decoration: none;
+      margin-bottom: 16px; transition: background 0.2s;
+    }
+    .cta-basic-btn:hover { background: #9b2a2a; }
+    .plan-popular-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: #e74c3c; color: #fff; font-size: 11px; font-weight: 700;
+      padding: 4px 16px; border-radius: 20px; white-space: nowrap;
+    }
+    .plan-name {
+      font-family: 'Montserrat', sans-serif; font-weight: 900;
+      font-size: 17px; color: #fff; text-align: center; margin-bottom: 4px;
+    }
+    .plan-price-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; flex-wrap: wrap; margin-bottom: 16px;
+    }
+    .plan-price-old { font-size: 14px; color: #7f8c8d; text-decoration: line-through; }
+    .plan-price {
+      font-family: 'Montserrat', sans-serif; font-weight: 900;
+      font-size: 26px; color: #e74c3c;
+    }
+    .plan-price-type {
+      background: rgba(231,76,60,0.15); color: #e74c3c;
+      font-size: 11px; font-weight: 700; border-radius: 20px;
+      padding: 3px 10px; border: 1px solid rgba(231,76,60,0.4);
+    }
+    .plan-features {
+      list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .plan-feature {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 500;
+    }
+    .plan-feature.included { color: #e0e0e0; }
+    .plan-feature.excluded { color: #555; text-decoration: line-through; }
+    .feat-icon {
+      width: 22px; height: 22px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 900; flex-shrink: 0;
+    }
+    .plan-feature.included .feat-icon { background: rgba(46,204,113,0.15); color: #2ecc71; }
+    .plan-feature.excluded .feat-icon { background: rgba(255,255,255,0.06); color: #555; }
+    .plan-local-price { font-size: 12px; color: #b0b0c0; text-align: center; margin-top: -10px; margin-bottom: 14px; display: none; }
+
+    /* CTA BUTTON */
+    @keyframes ctaPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231,76,60,0.55); }
+      50%       { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(231,76,60,0); }
+    }
+    .cta-main-btn {
+      display: block; width: 100%; background: #e74c3c;
+      color: #fff; border: none; border-radius: 14px;
+      padding: 18px; text-align: center;
+      font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 18px;
+      letter-spacing: 0.5px; cursor: pointer; text-decoration: none;
+      margin-bottom: 16px;
+      animation: ctaPulse 1.8s ease-in-out infinite;
+    }
+    .cta-main-btn:hover { background: #c0392b; animation: none; transform: scale(1.03); }
+    .cta-main-btn:active { transform: scale(0.98); animation: none; }
+
+    /* PAYMENT TRUST */
+    .pay-trust { text-align: center; }
+    .pay-trust-label {
+      font-size: 13px; color: #7f8c8d;
+      display: flex; align-items: center; justify-content: center;
+      gap: 6px; margin-bottom: 10px;
+    }
+    .pay-logos {
+      display: flex; align-items: center; justify-content: center;
+      gap: 7px; flex-wrap: wrap; margin-bottom: 8px;
+    }
+    .pay-logo {
+      background: #fff; border-radius: 6px; padding: 4px 9px;
+      font-size: 11px; font-weight: 800; color: #1a1a2e; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      min-width: 42px; letter-spacing: 0.3px;
+    }
+
+    /* LEGAL TEXT */
+    .legal-text {
+      font-size: 10px; color: #7f8c8d; line-height: 1.65;
+      margin-top: 14px; margin-bottom: 32px;
+    }
+    .legal-text a { color: #7f8c8d; text-decoration: underline; }
+
+    /* RATING BLOCK */
+    .rating-block {
+      background: #1e1e2e; border-radius: 14px;
+      padding: 20px; margin-bottom: 32px;
+    }
+    .rating-stars { font-size: 22px; color: #2ecc71; margin-bottom: 6px; letter-spacing: 3px; }
+    .rating-number { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 36px; color: #fff; margin-bottom: 4px; }
+    .rating-label { font-size: 12px; color: #b0b0c0; line-height: 1.5; }
+
+    /* SECTION HEADING */
+    .section-head { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 22px; color: #fff; margin-bottom: 20px; }
+
+    /* FULL-WIDTH IMAGE */
+    .offer-full-img { width: 100%; border-radius: 14px; display: block; margin-bottom: 24px; }
+
+    /* DETAIL BULLETS */
+    .detail-bullets { list-style: none; display: flex; flex-direction: column; gap: 18px; margin-bottom: 32px; text-align: left; }
+    .detail-bullets li { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: #b0b0c0; line-height: 1.65; }
+    .db-icon {
+      width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;
+      border-radius: 50%; border: 1.5px solid #e74c3c; color: #e74c3c;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 700;
+    }
+    .detail-bullets strong { color: #fff; }
+
+    /* DOTS DIVIDER */
+    .dots-div { font-size: 18px; color: #e74c3c; letter-spacing: 8px; margin-bottom: 24px; }
+
+    /* INSTITUTION CAROUSEL */
+    .institutions { margin-bottom: 32px; }
+    .institutions-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: 14px; color: #b0b0c0; margin-bottom: 20px;
+    }
+    .inst-carousel { display: flex; align-items: center; justify-content: center; gap: 16px; }
+    .inst-arrow {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #1e1e2e; border: 1px solid rgba(255,255,255,0.12);
+      color: #fff; font-size: 18px; cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .inst-arrow:hover { background: #2a2a3e; }
+    .inst-display {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+    }
+    .inst-item {
+      background: #fff; border-radius: 14px;
+      padding: 16px 28px; min-height: 72px;
+      display: none; align-items: center; justify-content: center;
+      width: 100%;
+    }
+    .inst-item.active { display: flex; }
+    .inst-item img { max-height: 36px; max-width: 180px; width: auto; object-fit: contain; display: block; }
+    .inst-dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
+    .inst-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.2); transition: background 0.2s;
+    }
+    .inst-dot.active { background: #e74c3c; }
+
+    /* REVIEWS */
+    .reviews-heading { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 18px; color: #fff; margin-bottom: 20px; }
+    .review-cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; text-align: left; }
+    .review-card { background: #1e1e2e; border-radius: 14px; padding: 18px; border: 1px solid rgba(255,255,255,0.08); }
+    .review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .review-avatar {
+      width: 42px; height: 42px; border-radius: 50%; background: #7f8c8d;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+      font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 16px; color: #fff; flex-shrink: 0;
+    }
+    .review-name { font-weight: 700; font-size: 15px; color: #fff; }
+    .review-info { font-size: 12px; color: #7f8c8d; margin-top: 2px; }
+    .review-meta-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .review-stars-wrap { display: flex; align-items: center; gap: 6px; }
+    .review-stars { color: #2ecc71; font-size: 13px; }
+    .review-verified { font-size: 11px; color: #2ecc71; }
+    .review-date { font-size: 11px; color: #7f8c8d; }
+    .review-title { font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 6px; }
+    .review-body { font-size: 13px; color: #b0b0c0; line-height: 1.65; }
+
+    /* FAQ */
+    .faq-section { margin-bottom: 32px; text-align: left; }
+    .faq-section details { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 16px 0; }
+    .faq-section details:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+    .faq-section summary {
+      font-weight: 600; font-size: 14px; color: #fff; cursor: pointer;
+      list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .faq-section summary::-webkit-details-marker { display: none; }
+    .faq-arrow { font-size: 20px; color: #7f8c8d; flex-shrink: 0; display: inline-block; transition: transform 0.25s; }
+    .faq-section details[open] .faq-arrow { transform: rotate(90deg); }
+    .faq-body { font-size: 14px; color: #b0b0c0; line-height: 1.7; padding-top: 12px; }
+
+    /* GUARANTEE */
+    .guarantee-card {
+      background: #1e1e2e; border-radius: 18px; padding: 24px 20px;
+      margin-bottom: 32px; border: 1px solid rgba(231,76,60,0.3);
+    }
+    .guarantee-badge {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(231,76,60,0.15); border: 2px solid #e74c3c;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; margin: 0 auto 16px;
+    }
+    .guarantee-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 18px; color: #fff; margin-bottom: 12px; }
+    .guarantee-body { font-size: 14px; color: #b0b0c0; line-height: 1.7; }
+
+    /* FOOTER */
+    .offer-footer {
+      font-size: 12px; color: #7f8c8d; line-height: 2;
+      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px;
+    }
+    .offer-footer a { color: #b0b0c0; text-decoration: underline; }
+
+    @media (min-width: 480px) {
+      .offer-body { padding-left: 24px; padding-right: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY HEADER -->
+  <header class="offer-header">
+    <div class="offer-header-inner">
+      <div class="oh-left">
+        <span class="oh-label">El descuento vence en</span>
+        <span class="oh-timer" id="countdown">10:00</span>
+      </div>
+      <a href="#checkout" class="oh-cta-btn" id="header-cta-btn">OBTENER PLAN</a>
+    </div>
+  </header>
+
+  <div class="offer-body">
+    <div class="offer-page">
+
+      <!-- LOGO -->
+      <img src="VIGORATI - LOGO.png" alt="VIGORATI" style="display:block; margin:0 auto 20px; height:140px; width:auto; object-fit:contain;">
+
+      <!-- BEFORE / AFTER -->
+      <section class="ba-section">
+        <div class="ba-row">
+          <div class="ba-col">
+            <p class="ba-label">Ahora</p>
+            <div class="ba-card">
+              <img src="OfferBefore.webp" alt="Ahora" class="ba-img">
+            </div>
+            <div class="ba-stat">
+              <span class="ba-stat-label">Rendimiento sexual</span>
+              <span class="ba-stat-val dim">Bajo promedio</span>
+              <div class="ba-bar"><div class="ba-bar-fill" style="width:25%"></div></div>
+            </div>
+            <div class="ba-stat">
+              <span class="ba-stat-label">Autoestima</span>
+              <span class="ba-stat-val dim">Baja</span>
+              <div class="ba-bar"><div class="ba-bar-fill" style="width:20%"></div></div>
+            </div>
+          </div>
+          <div class="ba-col">
+            <p class="ba-label accent">Meta</p>
+            <div class="ba-card red-bg">
+              <img src="OfferAfter.webp" alt="Meta" class="ba-img">
+            </div>
+            <div class="ba-stat">
+              <span class="ba-stat-label">Rendimiento sexual</span>
+              <span class="ba-stat-val bright">Excelente</span>
+              <div class="ba-bar"><div class="ba-bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="ba-stat">
+              <span class="ba-stat-label">Autoestima</span>
+              <span class="ba-stat-val bright">Fuerte</span>
+              <div class="ba-bar"><div class="ba-bar-fill" style="width:100%"></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOCIAL PROOF CARD -->
+      <div class="sp-card">
+        <div class="sp-card-icon">📊</div>
+        <p class="sp-card-text"><strong>El 94% de los que tienen un perfil parecido al tuyo</strong> mejoraron muchísimo su vida íntima usando VIGORATI.</p>
+      </div>
+
+      <!-- PLAN HEADLINE -->
+      <h1 class="plan-headline">Aquí está tu Plan Personal<br>para mejorar tu<br>rendimiento sexual</h1>
+
+      <!-- STATS CHIPS -->
+      <div class="stats-chips">
+        <div class="stat-chip">
+          <span class="stat-chip-icon">📊</span>
+          <div>
+            <span class="stat-chip-label">Erecciones</span>
+            <span class="stat-chip-val">Fuertes</span>
+          </div>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-chip-icon">⏱</span>
+          <div>
+            <span class="stat-chip-label">Duración</span>
+            <span class="stat-chip-val">20–30 min</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHART -->
+      <img src="Offer_chart.webp" alt="Progreso de 4 semanas" class="offer-chart">
+
+      <!-- PLAN BULLETS -->
+      <ul class="plan-bullets">
+        <li><span class="pb-icon">›</span>Nuestro algoritmo inteligente armó un plan a tu medida, según lo que querés lograr.</li>
+        <li><span class="pb-icon">›</span>Te cubre las cinco áreas clave para durar más y tener erecciones más firmes.</li>
+        <li><span class="pb-icon">›</span>Incluye prácticas que están científicamente comprobadas para que rindas mejor en la cama.</li>
+        <li><span class="pb-icon">›</span>También vas a tener herramientas prácticas y apoyo para ganar más confianza.</li>
+        <li><span class="pb-icon">›</span>Y todo acompañado por cursos de cracks en sexualidad que saben de verdad.</li>
+      </ul>
+
+      <!-- FIRST CTA BLOCK -->
+      <section id="checkout">
+        <h2 class="elige-titulo">Elige Tu Oferta</h2>
+        <div class="plan-selector">
+
+          <!-- PLAN BÁSICO $9.90 -->
+          <div class="plan-option">
+            <div class="plan-name">🔴 Plan Básico</div>
+            <div class="plan-price-row">
+              <span class="plan-price-old">$ 19.90</span>
+              <span class="plan-price">$ 9,90</span>
+              <span class="plan-price-type">compra única</span>
+            </div>
+            <div class="plan-local-price" id="local-price-1a"></div>
+            <ul class="plan-features">
+              <li class="plan-feature included"><span class="feat-icon">✓</span>Protocolo VIGORATI</li>
+              <li class="plan-feature included"><span class="feat-icon">✓</span>Plano Básico Completo</li>
+              <li class="plan-feature excluded"><span class="feat-icon">✕</span>Protocolo 16 Semanas</li>
+              <li class="plan-feature excluded"><span class="feat-icon">✕</span>Alimentación Sexual Avanzada</li>
+              <li class="plan-feature excluded"><span class="feat-icon">✕</span>Programa de Ejercicios Físicos</li>
+              <li class="plan-feature excluded"><span class="feat-icon">✕</span>Manual de Comunicación con la Pareja</li>
+              <li class="plan-feature excluded"><span class="feat-icon">✕</span>Mantenimiento de por Vida</li>
+            </ul>
+            <p class="plan-basic-note">⚠ Sin acceso a los bonos premium</p>
+            <a href="https://pay.hotmart.com/O106564210J" class="cta-basic-btn">OBTENER BÁSICO — $ 9,90</a>
+          </div>
+
+          <!-- PLAN PREMIUM $17 -->
+          <div class="plan-option popular">
+            <span class="plan-popular-badge">✦ MÁS COMPLETO</span>
+            <div class="plan-name">🔴 Plan Premium</div>
+            <div class="plan-price-row">
+              <span class="plan-price-old">$ 34.00</span>
+              <span class="plan-price">$ 17,00</span>
+              <span class="plan-price-type">compra única</span>
+            </div>
+            <div class="plan-local-price" id="local-price-1b"></div>
+            <ul class="plan-features">
+              <li class="plan-feature included"><span class="feat-icon">✓</span>Protocolo VIGORATI</li>
+              <li class="plan-feature included"><span class="feat-icon">✓</span>Plano Básico Completo</li>
+              <li class="plan-feature included"><span class="feat-icon">✓</span>Protocolo 16 Semanas</li>
+              <li class="plan-feature included"><span class="feat-icon">✓</span>Alimentación Sexual Avanzada</li>
+              <li class="plan-feature included"><span class="feat-icon">✓</span>Programa de Ejercicios Físicos</li>
+              <li class="plan-feature included"><span class="feat-icon">✓</span>Manual de Comunicación con la Pareja</li>
+              <li class="plan-feature included"><span class="feat-icon">✓</span>Mantenimiento de por Vida</li>
+            </ul>
+            <a href="https://pay.hotmart.com/O106564210J?off=bzf0dunk" class="cta-main-btn">OBTENER PREMIUM — $ 17,00</a>
+          </div>
+
+        </div>
+        <div class="pay-trust">
+          <div class="pay-trust-label">🔒 Paga de forma segura</div>
+        </div>
+      </section>
+
+      <p class="legal-text">
+        Al hacer clic en "Obtener Mi Plan" aceptas realizar una <strong style="color:#b0b0c0;">compra única</strong> de $ 9,90 por acceso de por vida al Protocolo VIGORATI. No hay cargos recurrentes ni suscripciones. El acceso se entrega de forma inmediata. Para soporte, contactá a support@vigorati.com. <a href="#">Política de compra</a>.
+      </p>
+
+      <!-- RATING BLOCK 1 -->
+      <div class="rating-block">
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-number">79.369</div>
+        <div class="rating-label">Valoración de 5 estrellas<br>Basado en las reseñas de los clientes de VIGORATI</div>
+      </div>
+
+      <!-- QUÉ OBTIENES -->
+      <h2 class="section-head">¿Qué obtienes?</h2>
+      <img src="wug_1.webp" alt="Programa completo" class="offer-full-img">
+
+      <ul class="detail-bullets">
+        <li>
+          <span class="db-icon">›</span>
+          <span>Ya tenés listo el <strong>programa de Kegels nivel avanzado</strong>, que incluye <strong>3 sesiones por día</strong>. Te recomendamos hacer al menos 2 sesiones diarias para ver buenos resultados.</span>
+        </li>
+        <li>
+          <span class="db-icon">›</span>
+          <span>Tener <strong>músculos fuertes en el abdomen y las piernas</strong> ayuda a aumentar tanto el deseo como el rendimiento sexual. Por eso, sumamos a tu plan <strong>ejercicios de fitness nivel intermedio</strong> para trabajar esas zonas.</span>
+        </li>
+        <li>
+          <span class="db-icon">›</span>
+          <span>Controlar bien la respiración <strong>reduce la tensión</strong> física y mental, y te ayuda a enfocarte más en el momento. Agregamos a tu programa <strong>técnicas de respiración clave</strong> para mejorar tu rendimiento.</span>
+        </li>
+        <li>
+          <span class="db-icon">›</span>
+          <span>También tenés un <strong>programa de equilibrio emocional</strong> para que ganes <strong>más confianza en vos mismo</strong> y mejores tu desempeño en la cama.</span>
+        </li>
+        <li>
+          <span class="db-icon">›</span>
+          <span>Y para cerrar con todo, incluimos <strong>consejos personalizados de expertos en sexualidad de primer nivel</strong>, para que mejores tu rendimiento, entiendas mejor a tu pareja y le pongas ese <strong>toque especial</strong> a tu vida sexual.</span>
+        </li>
+      </ul>
+
+      <!-- OFFER_2 IMAGE -->
+      <img src="Offer_2.webp" alt="Plan semanal de ejercicios" class="offer-full-img">
+
+      <div class="dots-div">• • •</div>
+
+      <!-- INSTITUTIONS CAROUSEL -->
+      <div class="institutions">
+        <p class="institutions-title">Nuestras técnicas fueron cubiertas en:</p>
+        <div class="inst-carousel">
+          <button class="inst-arrow" id="inst-prev">‹</button>
+          <div class="inst-display">
+            <div class="inst-item active"><img src="5.webp" alt="Forbes"></div>
+            <div class="inst-item"><img src="1.webp" alt="Business Insider"></div>
+            <div class="inst-item"><img src="2.webp" alt="American Psychological Association"></div>
+            <div class="inst-item"><img src="3.webp" alt="University of Cambridge"></div>
+            <div class="inst-item"><img src="4.webp" alt="BBC"></div>
+          </div>
+          <button class="inst-arrow" id="inst-next">›</button>
+        </div>
+        <div class="inst-dots" id="inst-dots">
+          <div class="inst-dot active"></div>
+          <div class="inst-dot"></div>
+          <div class="inst-dot"></div>
+          <div class="inst-dot"></div>
+          <div class="inst-dot"></div>
+        </div>
+      </div>
+
+      <!-- REVIEWS -->
+      <p class="reviews-heading">Nuestros clientes aman VIGORATI</p>
+      <div class="review-cards">
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar"><img src="FOTO DEPOIMENTO 1.jpg" alt="Miguel" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div><div class="review-name">Miguel</div><div class="review-info">● México</div></div>
+          </div>
+          <div class="review-meta-row">
+            <div class="review-stars-wrap"><span class="review-stars">★★★★★</span><span class="review-verified">● Verificado</span></div>
+            <span class="review-date">Hace 4 días</span>
+          </div>
+          <p class="review-title">¡Muchas gracias!</p>
+          <p class="review-body">¡Ahora puedo durar toda una hora! Después de usar VIGORATI durante unos 2 meses, mi pareja admite que he hecho un progreso increíble.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar"><img src="FOTO DEPOIMENTO 2.png" alt="Alejandro" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div><div class="review-name">Alejandro</div><div class="review-info">● Argentina</div></div>
+          </div>
+          <div class="review-meta-row">
+            <div class="review-stars-wrap"><span class="review-stars">★★★★★</span><span class="review-verified">● Verificado</span></div>
+            <span class="review-date">Hace 7 días</span>
+          </div>
+          <p class="review-title">Sin rodeos, solo resultados</p>
+          <p class="review-body">Después de algunos fracasos en la cama, pensé que mis mejores días habían terminado... Pero con VIGORATI recibí consejos y técnicas que me ayudaron a recuperarme increíblemente rápido. Después de 3 meses, mi vida íntima es mejor que antes. ¡Gracias!</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar"><img src="FOTO DEPOIMENTO 3.png" alt="Carlos" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div><div class="review-name">Carlos</div><div class="review-info">● Colombia</div></div>
+          </div>
+          <div class="review-meta-row">
+            <div class="review-stars-wrap"><span class="review-stars">★★★★★</span><span class="review-verified">● Verificado</span></div>
+            <span class="review-date">Ayer</span>
+          </div>
+          <p class="review-title">¡Resultados en 2 semanas!</p>
+          <p class="review-body">Empecé el programa sin muchas expectativas, pero a las dos semanas ya notaba una diferencia real. Mi confianza mejoró enormemente y las erecciones son más fuertes que nunca. VIGORATI es lo que me faltaba.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar"><img src="FOTO DEPOIMENTO 4.png" alt="Diego" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div><div class="review-name">Diego</div><div class="review-info">● Chile</div></div>
+          </div>
+          <div class="review-meta-row">
+            <div class="review-stars-wrap"><span class="review-stars">★★★★★</span><span class="review-verified">● Verificado</span></div>
+            <span class="review-date">Hace 3 días</span>
+          </div>
+          <p class="review-title">¡VIGORATI es el verdadero MVP!</p>
+          <p class="review-body">Un enfoque completo: esa es la diferencia entre VIGORATI y otros programas. Esperaba volver a la normalidad, pero me di cuenta de que mi antigua 'normalidad' estaba por debajo del promedio. Ahora llevo mi vitalidad masculina a un nuevo nivel.</p>
+        </div>
+      </div>
+
+      <!-- SECOND CTA BLOCK -->
+      <h2 class="elige-titulo">Elige Tu Oferta</h2>
+      <div class="plan-selector">
+
+        <!-- PLAN BÁSICO $9.90 -->
+        <div class="plan-option">
+          <div class="plan-name">🔴 Plan Básico</div>
+          <div class="plan-price-row">
+            <span class="plan-price-old">$ 19.90</span>
+            <span class="plan-price">$ 9,90</span>
+            <span class="plan-price-type">compra única</span>
+          </div>
+          <div class="plan-local-price" id="local-price-2a"></div>
+          <ul class="plan-features">
+            <li class="plan-feature included"><span class="feat-icon">✓</span>Protocolo VIGORATI</li>
+            <li class="plan-feature included"><span class="feat-icon">✓</span>Plano Básico Completo</li>
+            <li class="plan-feature excluded"><span class="feat-icon">✕</span>Protocolo 16 Semanas</li>
+            <li class="plan-feature excluded"><span class="feat-icon">✕</span>Alimentación Sexual Avanzada</li>
+            <li class="plan-feature excluded"><span class="feat-icon">✕</span>Programa de Ejercicios Físicos</li>
+            <li class="plan-feature excluded"><span class="feat-icon">✕</span>Manual de Comunicación con la Pareja</li>
+            <li class="plan-feature excluded"><span class="feat-icon">✕</span>Mantenimiento de por Vida</li>
+          </ul>
+          <p class="plan-basic-note">⚠ Sin acceso a los bonos premium</p>
+          <a href="https://pay.hotmart.com/O106564210J" class="cta-basic-btn">OBTENER BÁSICO — $ 9,90</a>
+        </div>
+
+        <!-- PLAN PREMIUM $17 -->
+        <div class="plan-option popular">
+          <span class="plan-popular-badge">✦ MÁS COMPLETO</span>
+          <div class="plan-name">🔴 Plan Premium</div>
+          <div class="plan-price-row">
+            <span class="plan-price-old">$ 34.00</span>
+            <span class="plan-price">$ 17,00</span>
+            <span class="plan-price-type">compra única</span>
+          </div>
+          <div class="plan-local-price" id="local-price-2b"></div>
+          <ul class="plan-features">
+            <li class="plan-feature included"><span class="feat-icon">✓</span>Protocolo VIGORATI</li>
+            <li class="plan-feature included"><span class="feat-icon">✓</span>Plano Básico Completo</li>
+            <li class="plan-feature included"><span class="feat-icon">✓</span>Protocolo 16 Semanas</li>
+            <li class="plan-feature included"><span class="feat-icon">✓</span>Alimentación Sexual Avanzada</li>
+            <li class="plan-feature included"><span class="feat-icon">✓</span>Programa de Ejercicios Físicos</li>
+            <li class="plan-feature included"><span class="feat-icon">✓</span>Manual de Comunicación con la Pareja</li>
+            <li class="plan-feature included"><span class="feat-icon">✓</span>Mantenimiento de por Vida</li>
+          </ul>
+          <a href="https://pay.hotmart.com/O106564210J?off=bzf0dunk" class="cta-main-btn">OBTENER PREMIUM — $ 17,00</a>
+        </div>
+
+      </div>
+      <div class="pay-trust">
+        <div class="pay-trust-label">🔒 Paga de forma segura</div>
+      </div>
+
+      <p class="legal-text">
+        Al hacer clic en "Obtener Mi Plan" aceptas realizar una <strong style="color:#b0b0c0;">compra única</strong> de $ 9,90 por acceso de por vida al Protocolo VIGORATI. No hay cargos recurrentes ni suscripciones. El acceso se entrega de forma inmediata. Para soporte, contactá a support@vigorati.com. <a href="#">Política de compra</a>.
+      </p>
+
+      <!-- RATING BLOCK 2 -->
+      <div class="rating-block">
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-number">79.369</div>
+        <div class="rating-label">Valoración de 5 estrellas<br>Basado en las reseñas de los clientes de VIGORATI</div>
+      </div>
+
+      <!-- FAQ -->
+      <h2 class="section-head" style="text-align:left; font-size:20px; margin-bottom:0;">FAQ</h2>
+      <div class="faq-section">
+        <details open>
+          <summary>1. ¿Por qué debería seguir este plan? <span class="faq-arrow">›</span></summary>
+          <p class="faq-body">Este plan fue diseñado específicamente según tus respuestas. Combina ejercicios de suelo pélvico, técnicas de respiración y equilibrio emocional para mejorar tu rendimiento sexual de forma natural y progresiva, sin medicamentos ni efectos secundarios.</p>
+        </details>
+        <details>
+          <summary>2. ¿Cómo puedo beneficiarme de este plan? <span class="faq-arrow">›</span></summary>
+          <p class="faq-body">Siguiendo el programa de forma consistente durante las 4 semanas, notarás mejoras en la duración, la calidad de las erecciones y la confianza en ti mismo. La clave es la constancia diaria: 20–30 minutos son suficientes para ver resultados reales.</p>
+        </details>
+        <details>
+          <summary>3. ¿Qué necesito para comenzar? <span class="faq-arrow">›</span></summary>
+          <p class="faq-body">Solo necesitas 20–30 minutos al día y acceso a tu cuenta VIGORATI. No se necesitan equipos especiales ni experiencia previa. El programa se adapta completamente a tu nivel y ritmo de vida.</p>
+        </details>
+        <details>
+          <summary>4. ¿Y si no veo resultados? <span class="faq-arrow">›</span></summary>
+          <p class="faq-body">Ofrecemos una garantía de devolución de dinero de 30 días sin preguntas. Si seguís el programa y no ves resultados, te devolvemos el 100% de tu inversión. Tu satisfacción es nuestra prioridad absoluta.</p>
+        </details>
+      </div>
+
+      <!-- GUARANTEE -->
+      <div class="guarantee-card">
+        <div class="guarantee-badge">🛡</div>
+        <h3 class="guarantee-title">Garantía de Devolución de Dinero de 30 Días</h3>
+        <p class="guarantee-body">Estamos tan seguros de que VIGORATI va a mejorar tu vida íntima que te ofrecemos una garantía total de 30 días. Si seguís el programa y no estás satisfecho con los resultados, te devolvemos el 100% de tu dinero — sin preguntas y sin complicaciones.</p>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="offer-footer">
+        <p>VIGORATI © 2025 · <a href="#">Política de Privacidad</a> · <a href="#">Términos de Uso</a></p>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="assets/js/oferta.js"></script>
+  <script>
+    // ── HEADER BUTTON ──
+    // (texto fixo, sem alternância)
+
+    // ── INSTITUTION CAROUSEL ──
+    var instItems = document.querySelectorAll('.inst-item');
+    var instDots  = document.querySelectorAll('.inst-dot');
+    var instIdx   = 0;
+
+    function showInst(i) {
+      instItems.forEach(function (el, j) {
+        el.classList.toggle('active', j === i);
+      });
+      instDots.forEach(function (d, j) {
+        d.classList.toggle('active', j === i);
+      });
+    }
+
+    document.getElementById('inst-prev').addEventListener('click', function () {
+      instIdx = (instIdx - 1 + instItems.length) % instItems.length;
+      showInst(instIdx);
+    });
+    document.getElementById('inst-next').addEventListener('click', function () {
+      instIdx = (instIdx + 1) % instItems.length;
+      showInst(instIdx);
+    });
+
+    // ── LOCAL CURRENCY PRICE ──
+    (function () {
+      var USD = 9.90;
+      Promise.all([
+        fetch('https://ipapi.co/json/').then(function (r) { return r.json(); }),
+        fetch('https://api.exchangerate-api.com/v4/latest/USD').then(function (r) { return r.json(); })
+      ]).then(function (results) {
+        var ip    = results[0];
+        var rates = results[1];
+        var cur   = ip.currency;
+        var rate  = rates.rates[cur];
+        if (!cur || !rate || cur === 'USD') return;
+        var local = USD * rate;
+        var formatted;
+        try {
+          formatted = new Intl.NumberFormat(undefined, {
+            style: 'currency', currency: cur, maximumFractionDigits: 0
+          }).format(local);
+        } catch (e) {
+          formatted = cur + ' ' + Math.round(local).toLocaleString();
+        }
+        var textBasic   = '≈ ' + formatted + ' ' + ip.country_name;
+        var localPremium = 17 * rate;
+        var formattedP;
+        try {
+          formattedP = new Intl.NumberFormat(undefined, {
+            style: 'currency', currency: cur, maximumFractionDigits: 0
+          }).format(localPremium);
+        } catch (e) {
+          formattedP = cur + ' ' + Math.round(localPremium).toLocaleString();
+        }
+        var textPremium = '≈ ' + formattedP + ' ' + ip.country_name;
+        ['local-price-1a', 'local-price-2a'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) { el.textContent = textBasic; el.style.display = 'block'; }
+        });
+        ['local-price-1b', 'local-price-2b'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) { el.textContent = textPremium; el.style.display = 'block'; }
+        });
+      }).catch(function () {});
+    })();
+  </script>
+</body>
+</html>
