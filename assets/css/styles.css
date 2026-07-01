@@ -47,7 +47,7 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: 1.5;
-  min-height: 100vh;
+  min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -61,7 +61,7 @@ button { font-family: inherit; cursor: pointer; }
 #app {
   max-width: 480px;
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -69,8 +69,8 @@ button { font-family: inherit; cursor: pointer; }
 .screen {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  padding: 0 20px 32px;
+  min-height: 100dvh;
+  padding: 0 20px max(20px, env(safe-area-inset-bottom));
   opacity: 1;
   transition: opacity 0.15s ease;
 }
@@ -145,8 +145,8 @@ button { font-family: inherit; cursor: pointer; }
 
 .site-logo-img {
   display: block;
-  margin: 16px auto 8px;
-  height: 140px;
+  margin: 10px auto 6px;
+  height: 72px;
   width: auto;
   object-fit: contain;
 }
@@ -166,17 +166,17 @@ button { font-family: inherit; cursor: pointer; }
 .screen-headline {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(var(--text-xl), 5vw, var(--text-2xl));
+  font-size: clamp(var(--text-lg), 5vw, var(--text-xl));
   color: var(--text-primary);
   line-height: 1.25;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   text-align: center;
 }
 
 .screen-subtitle {
   font-size: var(--text-sm);
   color: var(--text-secondary);
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   text-align: center;
 }
 
@@ -187,12 +187,12 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--bg-card);
   border: 1.5px solid var(--border);
   border-radius: 12px;
-  padding: 16px 20px;
+  padding: 12px 16px;
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
   text-align: left;
 }
@@ -247,8 +247,8 @@ button { font-family: inherit; cursor: pointer; }
 .options-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 12px;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 /* ============================================================
@@ -491,14 +491,17 @@ button { font-family: inherit; cursor: pointer; }
   color: white;
   border: none;
   border-radius: 12px;
-  padding: 18px 32px;
-  font-size: var(--text-lg);
+  padding: 16px 32px;
+  font-size: var(--text-base);
   font-weight: 700;
   font-family: var(--font-body);
   cursor: pointer;
   width: 100%;
   transition: background 0.2s, transform 0.1s;
-  margin-top: 16px;
+  margin-top: 12px;
+  position: sticky;
+  bottom: 16px;
+  z-index: 10;
 }
 
 .btn-primary:hover { background: var(--accent-dark); }
@@ -943,7 +946,7 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
   gap: 16px;
   padding: 24px 20px;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .loading-title {
@@ -1142,7 +1145,7 @@ button { font-family: inherit; cursor: pointer; }
 .email-screen {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: 0 20px 32px;
 }
 
@@ -1725,12 +1728,24 @@ button { font-family: inherit; cursor: pointer; }
    RESPONSIVE
    ============================================================ */
 @media (min-width: 480px) {
-  .screen { padding: 0 24px 32px; }
+  .screen { padding: 0 24px max(20px, env(safe-area-inset-bottom)); }
   .offer-body { padding: 80px 24px 0; }
 }
 
 @media (max-width: 360px) {
   .image-card-grid { gap: 8px; }
-  .image-card { padding: 12px 8px 10px; }
+  .image-card { padding: 10px 8px 8px; }
   .radio-image-grid { gap: 6px; }
+  .option-card { padding: 10px 14px; }
+  .options-list { gap: 6px; }
+}
+
+/* Telas com altura reduzida (ex: Safari com teclado aberto) */
+@media (max-height: 700px) {
+  .site-logo-img { height: 52px; margin: 6px auto 4px; }
+  .screen-headline { font-size: var(--text-base); }
+  .screen-subtitle { margin-bottom: 8px; }
+  .option-card { padding: 10px 14px; }
+  .options-list { gap: 6px; }
+  .quiz-header { padding: 10px 0 8px; min-height: 40px; }
 }
